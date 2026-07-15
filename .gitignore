@@ -5,9 +5,10 @@ node_modules/
 
 # Web build/tooling
 .expo/
-dist/
 web-build/
 expo-env.d.ts
+# NB: dist/ è versionato di proposito — Render Free non regge il build Expo,
+# quindi il web export pre-buildato viene committato e servito da server:prod.
 
 # Generated credentials/artifacts
 *.orig.*
