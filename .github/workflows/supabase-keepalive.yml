@@ -1,0 +1,37 @@
+name: Supabase Keepalive
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-keepalive
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    name: Minimal Supabase REST read
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      SUPABASE_KEEPALIVE_TABLE: sections
+      SUPABASE_KEEPALIVE_TIMEOUT_SECONDS: "12"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Validate required secrets
+        run: |
+          if [ -z "${SUPABASE_URL:-}" ] || [ -z "${SUPABASE_SERVICE_KEY:-}" ]; then
+            echo "::error::Missing SUPABASE_URL or SUPABASE_SERVICE_KEY repository secret."
+            exit 1
+          fi
+
+      - name: Ping Supabase
+        run: sh scripts/supabase-keepalive.sh

@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Camera Con Vista",
+    "slug": "camera-con-vista",
+    "version": "1.0.0",
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "https://ccvcolli-ghxg.onrender.com"
+        }
+      ],
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
