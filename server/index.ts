@@ -23,8 +23,7 @@ declare module "http" {
 function setupCors(app: express.Application) {
   const configuredHosts = [
     process.env.EXPO_PUBLIC_DOMAIN,
-    "ccvcolli-ghxg.onrender.com",
-    "ccvcolli.onrender.com",
+    "cashin-ccv-colli.onrender.com",
     "localhost:5000",
     "localhost:5001",
     "localhost:8081",
